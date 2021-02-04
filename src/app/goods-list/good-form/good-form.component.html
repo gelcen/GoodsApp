@@ -1,0 +1,24 @@
+<div class="card my-3">
+    <div class="card-header">Product Info</div>
+    <div class="card-body px-4">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+                <label class="mb-2">Name of a product</label>
+                <input class="form-control" formControlName="productName">
+                <span class="error-block" *ngIf="!productName.valid && productName.touched">
+                    Please enter name
+                </span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Price</label>
+                <input type="number" class="form-control" formControlName="productPrice">
+                <span class="error-block" *ngIf="!productPrice.valid && productPrice.touched">
+                    Please enter price
+                </span>
+            </div>
+            <button *ngIf="!isEditing" type="submit" class="btn btn-primary" [attr.disabled]="productForm.valid ? null : 'disabled'">Add product</button>
+            <button *ngIf="isEditing" type="submit" class="btn btn-primary" [attr.disabled]="productForm.valid ? null : 'disabled'">Update product</button>
+            <button type="button" class="btn btn-secondary ms-2" (click)="clearForm()">Clear</button>
+        </form>
+    </div>
+</div>
